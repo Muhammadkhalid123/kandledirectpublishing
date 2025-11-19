@@ -1,31 +1,24 @@
+"use client";
 import React from 'react';
-import { ChevronLeft, ChevronRight, Book, Pen, FileText, TrendingUp, Mic, Edit } from 'lucide-react';
+import { Book, FileText, TrendingUp, Mic, Edit, Pen, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import Header from './components/Header';
+import Carousel from './components/Carousel';
+import dynamic from 'next/dynamic';
+const ScrollExperience = dynamic(() => import('./components/ScrollExperience'), { ssr: false });
+import TestimonialsSection from './components/Testomonial';
+
+import Footer from './components/footer';
 
 export default function KindleLandingPage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
-      <header className="bg-gray-800 bg-opacity-90 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Pen className="w-6 h-6 text-orange-500" />
-          <span className="text-xl font-semibold">Kindle</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm">
-          <a href="#" className="hover:text-orange-500">Home</a>
-          <a href="#" className="hover:text-orange-500">Pages</a>
-          <a href="#" className="hover:text-orange-500">Our Services</a>
-          <a href="#" className="hover:text-orange-500">Pricing</a>
-          <a href="#" className="hover:text-orange-500">Contact</a>
-        </nav>
-        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full text-sm font-medium transition">
-          Get Started
-        </button>
-      </header>
+    <div className="min-h-screen bg-black text-white">
+      <Header />
 
       {/* Hero Section */}
       <section className="relative px-6 py-20 md:py-32 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
         <div className="md:w-1/2 mb-12 md:mb-0">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-serif-6xl font-noto-bold mb-6 leading-tight">
             Turn Your<br />
             Manuscript Into A<br />
             Published Ebook
@@ -47,33 +40,10 @@ export default function KindleLandingPage() {
       </section>
 
       {/* Partners */}
-      <section className="bg-orange-500 py-8">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-around gap-8">
-          <div className="flex items-center gap-2">
-            <Book className="w-8 h-8" />
-            <span className="font-semibold">Kobo</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Book className="w-8 h-8" />
-            <span className="font-semibold">Google</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Book className="w-8 h-8" />
-            <span className="font-semibold">Amazon Publishing</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Book className="w-8 h-8" />
-            <span className="font-semibold">Barnes & Noble Press</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Book className="w-8 h-8" />
-            <span className="font-semibold">Scribd</span>
-          </div>
-        </div>
-      </section>
+      <Carousel />
 
       {/* About Section */}
-      <section className="bg-amber-50 text-gray-900 py-20 px-6">
+      <section className="bg-amber-50 text-gray-900 py-20 px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
             <img 
@@ -99,11 +69,14 @@ export default function KindleLandingPage() {
           </div>
         </div>
       </section>
-
+      {/* Scroll Experience Section */}
+      <ScrollExperience />
       {/* Services Section */}
-      <section className="bg-white text-gray-900 py-20 px-6">
+      <section className="bg-amber-50 text-gray-900 py-20 px-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Our Services</h2>
+          <h2 className="text-4xl font-serif-700 m-2 mr-0 text-left">Our Services</h2>
+          <hr className="flex-grow border-gray-900" />
+          <br />
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -137,7 +110,7 @@ export default function KindleLandingPage() {
                 desc: "Let our experienced writers bring your ideas to life with professional ghostwriting services."
               }
             ].map((service, idx) => (
-              <div key={idx} className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition">
+              <div key={idx} className="p-6 border bg-white border-gray-200 rounded-xl hover:shadow-lg transition">
                 <div className="mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{service.desc}</p>
@@ -148,45 +121,11 @@ export default function KindleLandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gray-800 py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Testimonials</h2>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2 bg-gray-700 p-8 rounded-2xl relative">
-              <span className="text-6xl text-orange-500 absolute top-4 left-4">&ldquo;</span>
-              <p className="text-gray-300 mt-8 mb-6 leading-relaxed">
-                I didn't think it was possible to get my book published so quickly and easily. Kindle made the entire process seamless, from formatting to distribution. The team was incredibly supportive and professional. I'm so grateful for their expertise and dedication. My book is now available on all major platforms!
-              </p>
-              <span className="text-6xl text-orange-500 absolute bottom-4 right-8">&rdquo;</span>
-            </div>
-            <div className="md:w-1/2 flex gap-4 overflow-x-auto">
-              {[1, 2, 3, 4].map((_, idx) => (
-                <div key={idx} className="min-w-[200px] bg-gray-700 rounded-2xl p-4 text-center">
-                  <img 
-                    src={`https://images.unsplash.com/photo-${1500000000000 + idx * 1000000}?w=150&h=150&fit=crop&faces=1`}
-                    alt={`Testimonial ${idx + 1}`}
-                    className="w-32 h-32 rounded-full mx-auto mb-3 object-cover"
-                  />
-                  <p className="font-semibold">Sarah K.</p>
-                  <p className="text-sm text-gray-400">Author</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex justify-center gap-3 mt-8">
-            <button className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* CTA Section */}
       <section className="bg-amber-50 text-gray-900 py-20 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div className="max-w-7xl bg-white p-6 mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
             <h2 className="text-4xl font-bold mb-6">
               Bring Your Story To<br />
@@ -225,12 +164,13 @@ export default function KindleLandingPage() {
               className="rounded-3xl w-full h-96 object-cover shadow-lg"
             />
           </div>
-          <div className="md:w-1/2">
-            <h2 className="text-4xl font-bold mb-6">Why Kindle?</h2>
-            <p className="text-gray-400 mb-8">
+          <div className="md:w-1/2 p-10">
+            <h2 className="text-4xl font-noto mb-6 ">Why Kindle?</h2>
+            <p className="text-gray-400 ">
               At Kindle, we combine cutting-edge technology with personalized support to deliver an unparalleled publishing experience. Here's what sets us apart:
             </p>
-            <ul className="space-y-3 mb-8">
+            <hr className='mb-6 mt-6 text-gray-400'/>
+            <ul className="space-y-3 mb-8 text-gray-400">
               {[
                 "Simple and intuitive platform",
                 "Professional formatting and design",
@@ -240,9 +180,9 @@ export default function KindleLandingPage() {
                 "Marketing tools to boost visibility",
                 "Retain full rights to your work"
               ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
+                <li key={idx} className="flex items-start gap-3 text-gray-400">
                   <span className="text-orange-500 mt-1">✓</span>
-                  <span className="text-gray-300">{item}</span>
+                  <span className="text-gray-400">{item}</span>
                 </li>
               ))}
             </ul>
@@ -266,7 +206,7 @@ export default function KindleLandingPage() {
             {[1, 2, 3, 4, 5, 6].map((_, idx) => (
               <div key={idx} className="relative group overflow-hidden rounded-2xl shadow-lg">
                 <img 
-                  src={`https://images.unsplash.com/photo-${1500000000000 + idx * 5000000}?w=350&h=400&fit=crop`}
+                  src={`/highlights/bc${idx + 1}.jpg`}
                   alt={`Book ${idx + 1}`}
                   className="w-full h-72 object-cover group-hover:scale-110 transition duration-300"
                 />
@@ -278,68 +218,17 @@ export default function KindleLandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-12 px-6 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Pen className="w-6 h-6 text-orange-500" />
-                <span className="text-xl font-semibold">Kindle</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">
-                From Writing To<br />
-                Publishing.
-              </h3>
-              <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full text-sm font-medium transition mt-4">
-                Support
-              </button>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-orange-500">Home</a></li>
-                <li><a href="#" className="hover:text-orange-500">About Us</a></li>
-                <li><a href="#" className="hover:text-orange-500">Services</a></li>
-                <li><a href="#" className="hover:text-orange-500">Pricing</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Follow Us</h4>
-              <div className="flex gap-3">
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition">f</a>
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition">t</a>
-                <a href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition">in</a>
-              </div>
-              <div className="mt-6">
-                <p className="text-sm text-gray-400 mb-2">Contact Us</p>
-                <p className="text-sm">info@kindle.com</p>
-                <p className="text-sm">+1 (555) 123-4567</p>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-sm text-gray-400 mb-4">
-                Subscribe to get the latest news and updates
-              </p>
-              <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full text-sm font-medium transition w-full">
-                Subscribe
-              </button>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>Copyright 2024 - All Rights Reserved</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-orange-500">Privacy Policy</a>
-              <a href="#" className="hover:text-orange-500">Terms of Service</a>
-            </div>
+      <Footer />
+      {/* Bottom Banner */}
+    <div className="bg-orange-500 py-10 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-white">
+          <p>Copyright 2025 | All Rights Reserved | Powered by WordPress</p>
+          <div className="flex gap-6 mt-2 md:mt-0">
+            <a href="#" className="hover:underline">Disclaimer</a>
+            <a href="#" className="hover:underline">Cookies Statement</a>
           </div>
         </div>
-      </footer>
-
-      {/* Bottom Banner */}
-      <div className="bg-orange-500 py-2 text-center text-sm font-medium">
-        🎉 Special Offer: Get 20% off your first ebook publication! Use code: FIRST20
       </div>
-    </div>
+      </div>
   );
 }
